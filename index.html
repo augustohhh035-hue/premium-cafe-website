@@ -1,0 +1,4274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velvet Bean Café</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#fffaf5;
+    color:#302019;
+    transition:.3s;
+}
+
+body.dark{
+    background:#15100d;
+    color:#f8eee7;
+}
+
+button,
+input,
+select,
+textarea{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.container{
+    width:92%;
+    max-width:1250px;
+    margin:auto;
+}
+
+section{
+    padding:90px 0;
+}
+
+/* LOADER */
+
+.loader{
+    position:fixed;
+    inset:0;
+    background:#24130c;
+    color:white;
+    z-index:99999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.6s;
+}
+
+.loader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.loader-inner{
+    text-align:center;
+}
+
+.coffee-loader{
+    font-size:75px;
+    animation:coffeeFloat 1s infinite alternate;
+}
+
+.loader-inner h2{
+    font-family:Georgia,serif;
+    margin-top:15px;
+}
+
+.loader-bar{
+    width:220px;
+    height:5px;
+    background:#573423;
+    margin:20px auto;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+.loader-bar span{
+    display:block;
+    width:0;
+    height:100%;
+    background:#d89b57;
+    animation:load 1.5s forwards;
+}
+
+@keyframes load{
+    to{width:100%}
+}
+
+@keyframes coffeeFloat{
+    from{transform:translateY(0)}
+    to{transform:translateY(-12px)}
+}
+
+/* TOP BAR */
+
+.topbar{
+    background:#24130c;
+    color:#eee;
+    padding:8px 0;
+    font-size:13px;
+}
+
+.topbar-flex{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+/* HEADER */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:5000;
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(15px);
+    box-shadow:0 3px 20px rgba(0,0,0,.08);
+}
+
+body.dark header{
+    background:rgba(28,20,16,.95);
+}
+
+.navbar{
+    min-height:78px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo-icon{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:#9b542b;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+}
+
+.logo h2{
+    font-family:Georgia,serif;
+}
+
+.logo small{
+    color:#a65a2d;
+    letter-spacing:3px;
+    font-size:8px;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+.nav-links a{
+    font-weight:bold;
+    font-size:14px;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#a65a2d;
+}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.circle-btn{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1px solid #ddd1c8;
+    background:white;
+    position:relative;
+}
+
+body.dark .circle-btn{
+    background:#2a211d;
+    color:white;
+    border-color:#4b392f;
+}
+
+.cart-number{
+    position:absolute;
+    right:-4px;
+    top:-5px;
+    background:#d85c32;
+    color:white;
+    width:20px;
+    height:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    font-size:10px;
+}
+
+.mobile-menu{
+    display:none;
+    border:0;
+    background:none;
+    font-size:25px;
+}
+
+/* HERO */
+
+.hero{
+    min-height:690px;
+    display:flex;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    color:white;
+    background:
+    radial-gradient(circle at 78% 50%,#d08b4f 0,#6f3a20 28%,transparent 55%),
+    linear-gradient(110deg,#21110a,#4b2414,#26130c);
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:50%;
+    right:-150px;
+}
+
+.hero-content{
+    max-width:720px;
+    position:relative;
+    z-index:2;
+}
+
+.hero-label{
+    display:inline-block;
+    background:#eabf75;
+    color:#3a2113;
+    padding:8px 18px;
+    border-radius:30px;
+    font-weight:bold;
+}
+
+.hero h1{
+    font-family:Georgia,serif;
+    font-size:70px;
+    line-height:1.03;
+    margin:20px 0;
+}
+
+.hero h1 span{
+    color:#eabe72;
+}
+
+.hero p{
+    color:#e2d0c3;
+    max-width:620px;
+    line-height:1.7;
+    font-size:17px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:30px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:0;
+    padding:14px 25px;
+    border-radius:30px;
+    font-weight:bold;
+    display:inline-block;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+.btn-primary{
+    background:#eabe72;
+    color:#342015;
+}
+
+.btn-outline{
+    border:1px solid white;
+    color:white;
+}
+
+.hero-numbers{
+    display:flex;
+    gap:40px;
+    margin-top:45px;
+}
+
+.hero-numbers strong{
+    display:block;
+    color:#eabe72;
+    font-size:25px;
+}
+
+.hero-numbers span{
+    color:#cbb7aa;
+    font-size:12px;
+}
+
+.hero-coffee{
+    position:absolute;
+    right:10%;
+    font-size:180px;
+    animation:heroCoffee 5s infinite ease-in-out;
+}
+
+@keyframes heroCoffee{
+    0%,100%{
+        transform:translateY(0) rotate(-4deg);
+    }
+    50%{
+        transform:translateY(-25px) rotate(5deg);
+    }
+}
+
+/* FEATURES */
+
+.features{
+    margin-top:-45px;
+    position:relative;
+    z-index:4;
+}
+
+.features-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    background:white;
+    border-radius:20px;
+    box-shadow:0 15px 45px rgba(0,0,0,.12);
+    overflow:hidden;
+}
+
+body.dark .features-grid{
+    background:#271d18;
+}
+
+.feature{
+    text-align:center;
+    padding:28px 15px;
+    border-right:1px solid #eee4dd;
+}
+
+body.dark .feature{
+    border-color:#3c2e27;
+}
+
+.feature:last-child{
+    border:0;
+}
+
+.feature-icon{
+    font-size:35px;
+}
+
+.feature h3{
+    margin:7px 0;
+}
+
+.feature p{
+    font-size:13px;
+    color:#89776c;
+}
+
+/* TITLES */
+
+.section-title{
+    text-align:center;
+    max-width:700px;
+    margin:0 auto 50px;
+}
+
+.section-title small{
+    color:#a65a2d;
+    font-weight:bold;
+    letter-spacing:3px;
+}
+
+.section-title h2{
+    font-family:Georgia,serif;
+    font-size:44px;
+    margin:10px 0;
+}
+
+.section-title p{
+    color:#88766b;
+}
+
+/* ABOUT */
+
+.about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:65px;
+    align-items:center;
+}
+
+.about-visual{
+    height:480px;
+    border-radius:25px;
+    background:
+    radial-gradient(circle at 50% 50%,#f7eadc 0 25%,transparent 26%),
+    linear-gradient(135deg,#63321c,#bd7040);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
+
+.about-cup{
+    width:290px;
+    height:210px;
+    background:#fff;
+    border-radius:20px 20px 100px 100px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:120px;
+    box-shadow:0 30px 40px rgba(0,0,0,.25);
+}
+
+.about-badge{
+    position:absolute;
+    right:20px;
+    bottom:20px;
+    background:#eabe72;
+    padding:18px 25px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.about-badge strong{
+    font-size:30px;
+    display:block;
+}
+
+.about-text h2{
+    font-family:Georgia,serif;
+    font-size:44px;
+    line-height:1.1;
+    margin:10px 0 20px;
+}
+
+.about-text p{
+    color:#88766b;
+    line-height:1.7;
+    margin-bottom:15px;
+}
+
+.checks{
+    list-style:none;
+    margin:25px 0;
+}
+
+.checks li{
+    margin:10px 0;
+}
+
+.checks li::before{
+    content:"✓";
+    background:#689353;
+    color:white;
+    width:22px;
+    height:22px;
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    margin-right:10px;
+}
+
+/* MENU */
+
+.menu-section{
+    background:#f5eee8;
+}
+
+body.dark .menu-section{
+    background:#1d1612;
+}
+
+.menu-controls{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+}
+
+.search{
+    flex:1;
+    min-width:230px;
+    position:relative;
+}
+
+.search input{
+    width:100%;
+    padding:15px 45px 15px 18px;
+    border:1px solid #ded1c8;
+    border-radius:30px;
+    outline:none;
+}
+
+body.dark .search input{
+    background:#2a211d;
+    color:white;
+    border-color:#4b392f;
+}
+
+.search span{
+    position:absolute;
+    right:18px;
+    top:13px;
+}
+
+.filters{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+.filter{
+    border:1px solid #d9c9be;
+    padding:11px 16px;
+    background:white;
+    border-radius:25px;
+}
+
+body.dark .filter{
+    background:#2a211d;
+    color:white;
+}
+
+.filter.active,
+.filter:hover{
+    background:#9b542b;
+    color:white;
+}
+
+.menu-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.product{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 8px 25px rgba(40,25,15,.07);
+    transition:.4s;
+}
+
+body.dark .product{
+    background:#29201b;
+}
+
+.product:hover{
+    transform:translateY(-8px);
+}
+
+.product-image{
+    height:220px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:100px;
+    position:relative;
+}
+
+.favorite{
+    position:absolute;
+    right:14px;
+    top:14px;
+    width:38px;
+    height:38px;
+    border:0;
+    border-radius:50%;
+    background:white;
+}
+
+.favorite.active{
+    color:#df4d4d;
+}
+
+.product-body{
+    padding:20px;
+}
+
+.product-head{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.product h3{
+    font-size:18px;
+}
+
+.product-price{
+    color:#9b542b;
+    font-weight:bold;
+    font-size:18px;
+}
+
+.product-rating{
+    color:#e4a900;
+    font-size:13px;
+    margin:7px 0;
+}
+
+.product-description{
+    color:#88766b;
+    font-size:13px;
+    min-height:40px;
+}
+
+.product-buttons{
+    display:flex;
+    gap:7px;
+    margin-top:15px;
+}
+
+.add{
+    flex:1;
+    border:0;
+    background:#9b542b;
+    color:white;
+    padding:11px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.view{
+    width:45px;
+    border:1px solid #ddd0c7;
+    background:white;
+    border-radius:8px;
+}
+
+/* OFFER */
+
+.offer{
+    background:#321b10;
+    color:white;
+}
+
+.offer-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:50px;
+}
+
+.offer h2{
+    font-family:Georgia,serif;
+    color:#eabe72;
+    font-size:45px;
+    margin:12px 0;
+}
+
+.offer p{
+    color:#d9c5b8;
+    line-height:1.7;
+}
+
+.countdown{
+    display:flex;
+    gap:10px;
+    margin:25px 0;
+}
+
+.timer{
+    background:#49281a;
+    padding:12px 16px;
+    border-radius:8px;
+    text-align:center;
+}
+
+.timer strong{
+    display:block;
+    color:#eabe72;
+    font-size:22px;
+}
+
+.offer-art{
+    height:350px;
+    border-radius:25px;
+    background:linear-gradient(135deg,#b56838,#d69b62);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:150px;
+}
+
+/* GALLERY */
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.gallery{
+    height:210px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:75px;
+    border-radius:16px;
+    transition:.4s;
+}
+
+.gallery:hover{
+    transform:scale(1.04);
+}
+
+/* RESERVATION */
+
+.reservation{
+    background:linear-gradient(120deg,#9b4d27,#45200f);
+    color:white;
+}
+
+.reservation-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.reservation h2{
+    font-family:Georgia,serif;
+    font-size:45px;
+    margin:15px 0;
+}
+
+.reservation p{
+    color:#e4d0c3;
+    line-height:1.7;
+}
+
+.reservation ul{
+    list-style:none;
+    margin-top:25px;
+}
+
+.reservation li{
+    margin:12px 0;
+}
+
+.reservation-form{
+    background:white;
+    color:#302019;
+    padding:30px;
+    border-radius:18px;
+}
+
+.reservation-form h3{
+    font-family:Georgia,serif;
+    font-size:27px;
+    margin-bottom:20px;
+}
+
+.form-input{
+    width:100%;
+    padding:13px;
+    margin-bottom:12px;
+    border:1px solid #ddd1c8;
+    border-radius:8px;
+    outline:none;
+}
+
+.reservation-form button{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:8px;
+    background:#9b542b;
+    color:white;
+    font-weight:bold;
+}
+
+/* REVIEWS */
+
+.reviews{
+    background:#f5eee8;
+}
+
+body.dark .reviews{
+    background:#1d1612;
+}
+
+.review-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.review{
+    background:white;
+    padding:30px;
+    border-radius:18px;
+}
+
+body.dark .review{
+    background:#29201b;
+}
+
+.review-stars{
+    color:#e4a900;
+    font-size:22px;
+}
+
+.review p{
+    color:#806d61;
+    font-style:italic;
+    line-height:1.7;
+    margin:15px 0;
+}
+
+/* CONTACT */
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.contact-card{
+    background:#321b10;
+    color:white;
+    padding:35px;
+    border-radius:18px;
+}
+
+.contact-card h3{
+    color:#eabe72;
+    font-family:Georgia,serif;
+    font-size:28px;
+}
+
+.contact-row{
+    margin-top:20px;
+}
+
+.contact-row strong{
+    display:block;
+    margin-bottom:4px;
+}
+
+.contact-row span{
+    color:#d8c4b7;
+}
+
+.map{
+    min-height:330px;
+    border-radius:18px;
+    background:
+    linear-gradient(45deg,#ddd3ca 25%,transparent 25%),
+    linear-gradient(-45deg,#ddd3ca 25%,transparent 25%),
+    #eee8e2;
+    background-size:50px 50px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.map-card{
+    background:white;
+    padding:25px 35px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+/* FOOTER */
+
+footer{
+    background:#21130b;
+    color:#bba89b;
+    padding:60px 0 20px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:40px;
+}
+
+.footer-grid h3{
+    color:white;
+    margin-bottom:15px;
+}
+
+.footer-grid ul{
+    list-style:none;
+}
+
+.footer-grid li{
+    margin:9px 0;
+}
+
+.footer-grid a:hover{
+    color:#eabe72;
+}
+
+.footer-bottom{
+    border-top:1px solid rgba(255,255,255,.1);
+    margin-top:40px;
+    padding-top:20px;
+    text-align:center;
+}
+
+/* CART */
+
+.cart{
+    position:fixed;
+    right:-430px;
+    top:0;
+    width:410px;
+    max-width:94%;
+    height:100vh;
+    background:white;
+    z-index:10000;
+    box-shadow:-10px 0 40px rgba(0,0,0,.25);
+    transition:.4s;
+    display:flex;
+    flex-direction:column;
+}
+
+body.dark .cart{
+    background:#261d18;
+    color:white;
+}
+
+.cart.open{
+    right:0;
+}
+
+.cart-head{
+    display:flex;
+    justify-content:space-between;
+    padding:22px;
+    border-bottom:1px solid #eee;
+}
+
+.cart-head button{
+    border:0;
+    background:none;
+    font-size:25px;
+}
+
+.cart-body{
+    flex:1;
+    overflow:auto;
+    padding:20px;
+}
+
+.empty{
+    text-align:center;
+    padding:70px 20px;
+    color:#88766b;
+}
+
+.cart-item{
+    display:flex;
+    gap:12px;
+    padding:14px 0;
+    border-bottom:1px solid #eee;
+}
+
+.cart-icon{
+    width:55px;
+    height:55px;
+    border-radius:10px;
+    background:#f0d8bd;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+}
+
+.cart-info{
+    flex:1;
+}
+
+.cart-info h4{
+    font-size:14px;
+}
+
+.cart-price{
+    color:#9b542b;
+    font-weight:bold;
+}
+
+.quantity{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:8px;
+}
+
+.quantity button{
+    width:25px;
+    height:25px;
+    border:1px solid #ddd;
+    background:white;
+    border-radius:5px;
+}
+
+.cart-footer{
+    padding:20px;
+    border-top:1px solid #eee;
+}
+
+.total-line{
+    display:flex;
+    justify-content:space-between;
+    font-weight:bold;
+    font-size:20px;
+}
+
+.checkout{
+    width:100%;
+    padding:14px;
+    margin-top:15px;
+    background:#9b542b;
+    color:white;
+    border:0;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+/* MODALS */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    z-index:20000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:520px;
+    max-width:100%;
+    max-height:90vh;
+    overflow:auto;
+    background:white;
+    color:#302019;
+    padding:30px;
+    border-radius:18px;
+    position:relative;
+}
+
+body.dark .modal-box{
+    background:#29201b;
+    color:white;
+}
+
+.close{
+    position:absolute;
+    right:18px;
+    top:13px;
+    background:none;
+    border:0;
+    font-size:25px;
+}
+
+.checkout-items{
+    background:#f6eee8;
+    padding:15px;
+    border-radius:10px;
+    margin:15px 0;
+}
+
+body.dark .checkout-items{
+    background:#3a2c24;
+}
+
+.checkout-row{
+    display:flex;
+    justify-content:space-between;
+    margin:8px 0;
+}
+
+.coupon{
+    display:flex;
+    gap:7px;
+    margin:15px 0;
+}
+
+.coupon input{
+    flex:1;
+    padding:11px;
+    border:1px solid #ddd;
+    border-radius:7px;
+}
+
+.coupon button{
+    background:#527c47;
+    color:white;
+    border:0;
+    padding:0 15px;
+    border-radius:7px;
+}
+
+.pay-input{
+    width:100%;
+    padding:12px;
+    margin-bottom:10px;
+    border:1px solid #ddd;
+    border-radius:7px;
+}
+
+.pay{
+    width:100%;
+    padding:14px;
+    background:#9b542b;
+    color:white;
+    border:0;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+/* CHAT */
+
+.chat-button{
+    position:fixed;
+    right:25px;
+    bottom:80px;
+    width:55px;
+    height:55px;
+    border:0;
+    border-radius:50%;
+    background:#9b542b;
+    color:white;
+    font-size:23px;
+    z-index:4000;
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
+}
+
+.chat-box{
+    position:fixed;
+    right:25px;
+    bottom:145px;
+    width:320px;
+    max-width:90%;
+    background:white;
+    border-radius:15px;
+    z-index:4000;
+    box-shadow:0 10px 40px rgba(0,0,0,.25);
+    overflow:hidden;
+    display:none;
+}
+
+body.dark .chat-box{
+    background:#29201b;
+    color:white;
+}
+
+.chat-box.open{
+    display:block;
+}
+
+.chat-head{
+    background:#321b10;
+    color:white;
+    padding:15px;
+}
+
+.chat-messages{
+    height:260px;
+    padding:15px;
+    overflow:auto;
+}
+
+.message{
+    background:#f0e5dc;
+    color:#302019;
+    padding:9px 12px;
+    border-radius:10px;
+    margin-bottom:8px;
+    font-size:13px;
+}
+
+.message.user{
+    background:#9b542b;
+    color:white;
+    margin-left:30px;
+}
+
+.chat-input{
+    display:flex;
+    border-top:1px solid #ddd;
+}
+
+.chat-input input{
+    flex:1;
+    border:0;
+    padding:12px;
+    outline:0;
+}
+
+.chat-input button{
+    border:0;
+    background:#9b542b;
+    color:white;
+    padding:0 15px;
+}
+
+/* TOAST */
+
+.toast-container{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:50000;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.toast{
+    background:#291b13;
+    color:white;
+    padding:15px 18px;
+    border-radius:9px;
+    min-width:270px;
+    animation:toast .3s;
+}
+
+@keyframes toast{
+    from{
+        transform:translateX(100%);
+        opacity:0;
+    }
+    to{
+        transform:translateX(0);
+        opacity:1;
+    }
+}
+
+/* BACK TOP */
+
+.back-top{
+    position:fixed;
+    right:25px;
+    bottom:20px;
+    width:45px;
+    height:45px;
+    border:0;
+    border-radius:50%;
+    background:#9b542b;
+    color:white;
+    z-index:3500;
+    opacity:0;
+    pointer-events:none;
+}
+
+.back-top.show{
+    opacity:1;
+    pointer-events:auto;
+}
+
+/* REVEAL */
+
+.reveal{
+    opacity:0;
+    transform:translateY(30px);
+    transition:.8s;
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+    .nav-links{
+        display:none;
+        position:absolute;
+        top:78px;
+        left:0;
+        right:0;
+        background:white;
+        padding:25px;
+        flex-direction:column;
+        box-shadow:0 10px 25px rgba(0,0,0,.15);
+    }
+
+    body.dark .nav-links{
+        background:#261d18;
+    }
+
+    .nav-links.open{
+        display:flex;
+    }
+
+    .mobile-menu{
+        display:block;
+    }
+
+    .features-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .about-grid,
+    .offer-grid,
+    .reservation-grid,
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .menu-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .review-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .hero-coffee{
+        opacity:.25;
+    }
+}
+
+@media(max-width:600px){
+
+    section{
+        padding:65px 0;
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+
+    .hero{
+        min-height:620px;
+    }
+
+    .hero-numbers{
+        gap:18px;
+    }
+
+    .hero-numbers strong{
+        font-size:19px;
+    }
+
+    .features-grid,
+    .menu-grid,
+    .review-grid,
+    .gallery-grid,
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .feature{
+        border-right:0;
+        border-bottom:1px solid #eee;
+    }
+
+    .section-title h2{
+        font-size:35px;
+    }
+
+    .about-text h2,
+    .offer h2,
+    .reservation h2{
+        font-size:35px;
+    }
+
+    .gallery{
+        height:220px;
+    }
+
+    .topbar-flex{
+        justify-content:center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+
+<div class="loader" id="loader">
+
+<div class="loader-inner">
+
+<div class="coffee-loader">☕</div>
+
+<h2>VELVET BEAN</h2>
+
+<div class="loader-bar">
+<span></span>
+</div>
+
+<p>Brewing your experience...</p>
+
+</div>
+
+</div>
+
+
+<!-- TOP BAR -->
+
+<div class="topbar">
+
+<div class="container topbar-flex">
+
+<span>📞 +91 98765 43210</span>
+
+<span>✉ hello@velvetbean.com</span>
+
+<span id="openStatus">● Checking...</span>
+
+</div>
+
+</div>
+
+
+<!-- NAVIGATION -->
+
+<header>
+
+<div class="container navbar">
+
+<a href="#home" class="logo">
+
+<div class="logo-icon">☕</div>
+
+<div>
+
+<h2>Velvet Bean</h2>
+
+<small>CAFÉ & ROASTERY</small>
+
+</div>
+
+</a>
+
+
+<ul class="nav-links" id="navLinks">
+
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#menu">Menu</a></li>
+<li><a href="#offers">Offers</a></li>
+<li><a href="#reviews">Reviews</a></li>
+<li><a href="#reservation">Reserve</a></li>
+<li><a href="#contact">Contact</a></li>
+
+</ul>
+
+
+<div class="nav-actions">
+
+<button class="circle-btn"
+onclick="toggleTheme()">
+🌙
+</button>
+
+<button class="circle-btn"
+onclick="openCart()">
+
+🛒
+
+<span class="cart-number"
+id="cartCount">
+0
+</span>
+
+</button>
+
+<button class="mobile-menu"
+onclick="toggleMenu()">
+☰
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div class="container">
+
+<div class="hero-content reveal">
+
+<span class="hero-label">
+☕ Freshly Roasted Every Day
+</span>
+
+<h1>
+Your daily cup of
+<span>happiness.</span>
+</h1>
+
+<p>
+Welcome to Velvet Bean — a modern café where
+specialty coffee, handmade desserts and good
+conversations come together.
+</p>
+
+<div class="hero-buttons">
+
+<a href="#menu"
+class="btn btn-primary">
+Explore Menu →
+</a>
+
+<a href="#reservation"
+class="btn btn-outline">
+Reserve a Table
+</a>
+
+</div>
+
+<div class="hero-numbers">
+
+<div>
+<strong>12+</strong>
+<span>Years Brewing</span>
+</div>
+
+<div>
+<strong>25+</strong>
+<span>Coffee Blends</span>
+</div>
+
+<div>
+<strong>4.9★</strong>
+<span>Customer Rating</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="hero-coffee">
+☕
+</div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<div class="features">
+
+<div class="container features-grid">
+
+<div class="feature">
+<div class="feature-icon">☕</div>
+<h3>Specialty Coffee</h3>
+<p>Premium freshly roasted beans</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">🥐</div>
+<h3>Fresh Bakery</h3>
+<p>Baked fresh every morning</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">📶</div>
+<h3>Free Wi-Fi</h3>
+<p>Perfect place to work</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">❤️</div>
+<h3>Made With Love</h3>
+<p>Every cup matters</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<div class="container about-grid">
+
+<div class="about-visual reveal">
+
+<div class="about-cup">
+☕
+</div>
+
+<div class="about-badge">
+<strong>12+</strong>
+Years of Coffee
+</div>
+
+</div>
+
+
+<div class="about-text reveal">
+
+<small>OUR STORY</small>
+
+<h2>
+More than coffee.
+It's a feeling.
+</h2>
+
+<p>
+Velvet Bean started with one small coffee machine,
+a passion for roasting and a dream to create a place
+where everyone feels welcome.
+</p>
+
+<p>
+Today, we roast carefully selected beans and serve
+them alongside fresh pastries, desserts and café
+favorites.
+</p>
+
+<ul class="checks">
+
+<li>Freshly roasted specialty coffee</li>
+<li>Fresh bakery every morning</li>
+<li>Comfortable work-friendly space</li>
+<li>Friendly service</li>
+
+</ul>
+
+<a href="#menu"
+class="btn btn-primary">
+Discover Our Menu
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- MENU -->
+
+<section class="menu-section" id="menu">
+
+<div class="container">
+
+<div class="section-title reveal">
+
+<small>OUR MENU</small>
+
+<h2>
+Crafted For Coffee Lovers
+</h2>
+
+<p>
+Choose your favorite drink or treat.
+</p>
+
+</div>
+
+
+<div class="menu-controls">
+
+<div class="search">
+
+<input
+id="search"
+type="text"
+placeholder="Search coffee, dessert..."
+oninput="searchProducts()"
+>
+
+<span>🔍</span>
+
+</div>
+
+
+<div class="filters">
+
+<button
+class="filter active"
+onclick="filterProducts('all',this)">
+All
+</button>
+
+<button
+class="filter"
+onclick="filterProducts('coffee',this)">
+☕ Coffee
+</button>
+
+<button
+class="filter"
+onclick="filterProducts('cold',this)">
+🧊 Cold
+</button>
+
+<button
+class="filter"
+onclick="filterProducts('food',this)">
+🥪 Food
+</button>
+
+<button
+class="filter"
+onclick="filterProducts('dessert',this)">
+🍰 Dessert
+</button>
+
+</div>
+
+</div>
+
+
+<div class="menu-grid" id="products">
+
+<!-- PRODUCT 1 -->
+
+<div class="product reveal"
+data-category="coffee"
+data-name="Cappuccino">
+
+<div class="product-image"
+style="background:#d6b397">
+
+<button
+class="favorite"
+onclick="favorite(this)">
+♡
+</button>
+
+☕
+
+</div>
+
+<div class="product-body">
+
+<div class="product-head">
+
+<h3>Cappuccino</h3>
+
+<span class="product-price">
+₹149
+</span>
+
+</div>
+
+<div class="product-rating">
+★★★★★ 4.9
+</div>
+
+<p class="product-description">
+Rich espresso with steamed milk and
+velvety foam.
+</p>
+
+<div class="product-buttons">
+
+<button class="add"
+onclick="addToCart('Cappuccino',149,'☕')">
+Add to Cart
+</button>
+
+<button class="view"
+onclick="quickView('Cappuccino','Rich espresso with steamed milk and velvety foam.',149,'☕')">
+👁
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- PRODUCT 2 -->
+
+<div class="product reveal"
+data-category="coffee"
+data-name="Caramel Latte">
+
+<div class="product-image"
+style="background:#dfc09c">
+
+<button
+class="favorite"
+onclick="favorite(this)">
+♡
+</button>
+
+🥛
+
+</div>
+
+<div class="product-body">
+
+<div class="product-head">
+
+<h3>Caramel Latte</h3>
+
+<span class="product-price">
+₹179
+</span>
+
+</div>
+
+<div class="product-rating">
+★★★★★ 4.8
+</div>
+
+<p class="product-description">
+Smooth espresso, steamed milk and
+caramel sweetness.
+</p>
+
+<div class="product-buttons">
+
+<button class="add"
+onclick="addToCart('Caramel Latte',179,'🥛')">
+Add to Cart
+</button>
+
+<button class="view"
+onclick="quickView('Caramel Latte','Smooth espresso with steamed milk and caramel.',179,'🥛')">
+👁
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- PRODUCT 3 -->
+
+<div class="product reveal"
+data-category="cold"
+data-name="Iced Mocha">
+
+<div class="product-image"
+style="background:#c8a17e">
+
+<button
+class="favorite"
+onclick="favorite(this)">
+♡
+</button>
+
+🧊
+
+</div>
+
+<div class="product-body">
+
+<div class="product-head">
+
+<h3>Iced Mocha</h3>
+
+<span class="product-price">
+₹189
+</span>
+
+</div>
+
+<div class="product-rating">
+★★★★★ 4.9
+</div>
+
+<p class="product-description">
+Cold chocolate coffee topped with
+creamy foam.
+</p>
+
+<div class="product-buttons">
+
+<button class="add"
+onclick="addToCart('Iced Mocha',189,'🧊')">
+Add to Cart
+</button>
+
+<button class="view"
+onclick="quickView('Iced Mocha','Cold chocolate coffee with creamy foam.',189,'🧊')">
+👁
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- PRODUCT 4 -->
+
+<div class="product reveal"
+data-category="food"
+data-name="Avocado Toast">
+
+<div class="product-image"
+style="background:#c8d5a7">
+
+<button
+class="favorite"
+onclick="favorite(this)">
+♡
+</button>
+
+🥑
+
+</div>
+
+<div class="product-body">
+
+<div class="product-head">
+
+<h3>Avocado Toast</h3>
+
+<span class="product-price">
+₹229
+</span>
+
+</div>
+
+<div class="product-rating">
+★★★★★ 4.7
+</div>
+
+<p class="product-description">
+Sourdough bread, creamy avocado,
+herbs and chili flakes.
+</p>
+
+<div class="product-buttons">
+
+<button class="add"
+onclick="addToCart('Avocado Toast',229,'🥑')">
+Add to Cart
+</button>
+
+<button class="view"
+onclick="quickView('Avocado Toast','Fresh avocado on toasted sourdough.',229,'🥑')">
+👁
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- PRODUCT 5 -->
+
+<div class="product reveal"
+data-category="food"
+data-name="Club Sandwich">
+
+<div class="product-image"
+style="background:#e0c58f">
+
+<button
+class="favorite"
+onclick="favorite(this)">
+♡
+</button>
+
+🥪
+
+</div>
+
+<div class="product-body">
+
+<div class="product-head">
+
+<h3>Club Sandwich</h3>
+
+<span class="product-price">
+₹249
+</span>
+
+</div>
+
+<div class="product-rating">
+★★★★★ 4.8
+</div>
+
+<p class="product-description">
+Toasted bread with fresh vegetables,
+cheese and signature sauce.
+</p>
+
+<div class="product-buttons">
+
+<button class="add"
+onclick="addToCart('Club Sandwich',249,'🥪')">
+Add to Cart
+</button>
+
+<button class="view"
+onclick="quickView('Club Sandwich','Toasted sandwich with vegetables, cheese and sauce.',249,'🥪')">
+👁
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- PRODUCT 6 -->
+
+<div class="product reveal"
+data-category="dessert"
+data-name="Chocolate Brownie">
+
+<div class="product-image"
+style="background:#c79b7b">
+
+<button
+class="favorite"
+onclick="favorite(this)">
+♡
+</button>
+
+🍫
+
+</div>
+
+<div class="product-body">
+
+<div class="product-head">
+
+<h3>Chocolate Brownie</h3>
+
+<span class="product-price">
+₹129
+</span>
+
+</div>
+
+<div class="product-rating">
+★★★★★ 5.0
+</div>
+
+<p class="product-description">
+Warm chocolate brownie with a rich
+gooey center.
+</p>
+
+<div class="product-buttons">
+
+<button class="add"
+onclick="addToCart('Chocolate Brownie',129,'🍫')">
+Add to Cart
+</button>
+
+<button class="view"
+onclick="quickView('Chocolate Brownie','Warm and rich chocolate brownie.',129,'🍫')">
+👁
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- OFFER -->
+
+<section class="offer" id="offers">
+
+<div class="container offer-grid">
+
+<div class="reveal">
+
+<small>☕ TODAY'S SPECIAL</small>
+
+<h2>
+Coffee & Cake Combo
+</h2>
+
+<p>
+Get any regular coffee + our signature
+chocolate brownie at a special price.
+</p>
+
+<div class="countdown">
+
+<div class="timer">
+<strong id="hours">00</strong>
+Hours
+</div>
+
+<div class="timer">
+<strong id="minutes">00</strong>
+Minutes
+</div>
+
+<div class="timer">
+<strong id="seconds">00</strong>
+Seconds
+</div>
+
+</div>
+
+<button
+class="btn btn-primary"
+onclick="addToCart('Coffee & Cake Combo',249,'☕')">
+
+Order Combo ₹249
+
+</button>
+
+</div>
+
+<div class="offer-art">
+☕🍰
+</div>
+
+</div>
+
+</section>
+
+
+<!-- GALLERY -->
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+
+<small>CAFÉ LIFE</small>
+
+<h2>
+A Place To Slow Down
+</h2>
+
+</div>
+
+<div class="gallery-grid">
+
+<div class="gallery"
+style="background:#d6a775">
+☕
+</div>
+
+<div class="gallery"
+style="background:#c7a08a">
+🥐
+</div>
+
+<div class="gallery"
+style="background:#b8c89e">
+🥗
+</div>
+
+<div class="gallery"
+style="background:#e0c389">
+🍰
+</div>
+
+<div class="gallery"
+style="background:#c6926c">
+🥪
+</div>
+
+<div class="gallery"
+style="background:#d6b091">
+🍪
+</div>
+
+<div class="gallery"
+style="background:#a8b58e">
+🌿
+</div>
+
+<div class="gallery"
+style="background:#c88d63">
+👨‍🍳
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- REVIEWS -->
+
+<section class="reviews" id="reviews">
+
+<div class="container">
+
+<div class="section-title">
+
+<small>REVIEWS</small>
+
+<h2>
+What Our Guests Say
+</h2>
+
+</div>
+
+<div class="review-grid">
+
+<div class="review">
+
+<div class="review-stars">
+★★★★★
+</div>
+
+<p>
+"Best cappuccino I've had in the city.
+The atmosphere is amazing."
+</p>
+
+<strong>Arjun</strong>
+
+</div>
+
+<div class="review">
+
+<div class="review-stars">
+★★★★★
+</div>
+
+<p>
+"Beautiful café, friendly staff and
+excellent desserts."
+</p>
+
+<strong>Priya</strong>
+
+</div>
+
+<div class="review">
+
+<div class="review-stars">
+★★★★★
+</div>
+
+<p>
+"Perfect place for studying and working.
+The coffee keeps me coming back."
+</p>
+
+<strong>Rohan</strong>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- RESERVATION -->
+
+<section class="reservation" id="reservation">
+
+<div class="container reservation-grid">
+
+<div class="reveal">
+
+<small>RESERVE YOUR TABLE</small>
+
+<h2>
+Make your next coffee date special.
+</h2>
+
+<p>
+Reserve a table for breakfast, work meetings,
+friends or a relaxing evening.
+</p>
+
+<ul>
+
+<li>✓ Comfortable seating</li>
+<li>✓ Free Wi-Fi</li>
+<li>✓ Group tables</li>
+<li>✓ Birthday setup available</li>
+
+</ul>
+
+</div>
+
+
+<div class="reservation-form">
+
+<h3>Book Your Table</h3>
+
+<form id="bookingForm">
+
+<input
+class="form-input"
+id="guestName"
+placeholder="Your Name"
+required
+>
+
+<input
+class="form-input"
+id="guestPhone"
+placeholder="Phone Number"
+required
+>
+
+<input
+class="form-input"
+id="bookingDate"
+type="date"
+required
+>
+
+<select
+class="form-input"
+id="bookingTime"
+required>
+
+<option value="">
+Choose Time
+</option>
+
+<option>10:00 AM</option>
+<option>12:00 PM</option>
+<option>2:00 PM</option>
+<option>5:00 PM</option>
+<option>7:00 PM</option>
+<option>9:00 PM</option>
+
+</select>
+
+<select
+class="form-input"
+id="guestCount"
+required>
+
+<option value="">
+Number of Guests
+</option>
+
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+<option>6+</option>
+
+</select>
+
+<button type="submit">
+Confirm Reservation
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<div class="container">
+
+<div class="section-title">
+
+<small>CONTACT US</small>
+
+<h2>
+Come Say Hello
+</h2>
+
+</div>
+
+
+<div class="contact-grid">
+
+<div class="contact-card">
+
+<h3>Velvet Bean Café</h3>
+
+<div class="contact-row">
+
+<strong>📍 Address</strong>
+
+<span>
+42 Coffee Lane, New Delhi, India
+</span>
+
+</div>
+
+<div class="contact-row">
+
+<strong>📞 Phone</strong>
+
+<span>
++91 98765 43210
+</span>
+
+</div>
+
+<div class="contact-row">
+
+<strong>✉ Email</strong>
+
+<span>
+hello@velvetbean.com
+</span>
+
+</div>
+
+<div class="contact-row">
+
+<strong>🕐 Opening Hours</strong>
+
+<span>
+10:00 AM – 11:00 PM
+</span>
+
+</div>
+
+</div>
+
+
+<div class="map">
+
+<div class="map-card">
+
+📍
+
+<h3>Velvet Bean Café</h3>
+
+<p>New Delhi, India</p>
+
+<br>
+
+<a
+href="https://www.google.com/maps"
+target="_blank"
+style="color:#9b542b;font-weight:bold">
+
+Open Google Maps →
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="container">
+
+<div class="footer-grid">
+
+<div>
+
+<h3>☕ Velvet Bean</h3>
+
+<p>
+Specialty coffee, fresh food and
+good conversations.
+</p>
+
+</div>
+
+<div>
+
+<h3>Explore</h3>
+
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#menu">Menu</a></li>
+<li><a href="#offers">Offers</a></li>
+</ul>
+
+</div>
+
+<div>
+
+<h3>Services</h3>
+
+<ul>
+<li><a href="#reservation">Reservation</a></li>
+<li><a href="#menu">Order Online</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+</div>
+
+<div>
+
+<h3>Social</h3>
+
+<ul>
+
+<li>
+<a href="https://instagram.com"
+target="_blank">
+Instagram
+</a>
+</li>
+
+<li>
+<a href="https://facebook.com"
+target="_blank">
+Facebook
+</a>
+</li>
+
+<li>
+<a href="https://youtube.com"
+target="_blank">
+YouTube
+</a>
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+© 2026 Velvet Bean Café • Crafted With ☕ & ❤️
+
+</div>
+
+</div>
+
+</footer>
+
+
+<!-- CART -->
+
+<div class="cart" id="cart">
+
+<div class="cart-head">
+
+<h2>Your Cart</h2>
+
+<button onclick="closeCart()">×</button>
+
+</div>
+
+<div class="cart-body" id="cartBody">
+
+<div class="empty">
+
+<div style="font-size:60px">
+🛒
+</div>
+
+<p>
+Your cart is empty.
+</p>
+
+</div>
+
+</div>
+
+<div class="cart-footer">
+
+<div class="total-line">
+
+<span>Total</span>
+
+<span>
+₹<span id="cartTotal">0</span>
+</span>
+
+</div>
+
+<button
+class="checkout"
+onclick="checkout()">
+
+Checkout
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- QUICK VIEW -->
+
+<div class="modal" id="quickModal">
+
+<div class="modal-box">
+
+<button
+class="close"
+onclick="closeModal('quickModal')">
+×
+</button>
+
+<div id="quickContent"></div>
+
+</div>
+
+</div>
+
+
+<!-- CHECKOUT -->
+
+<div class="modal" id="checkoutModal">
+
+<div class="modal-box">
+
+<button
+class="close"
+onclick="closeModal('checkoutModal')">
+×
+</button>
+
+<h2>Checkout</h2>
+
+<div class="checkout-items"
+id="checkoutItems">
+</div>
+
+<div class="checkout-row">
+<span>Subtotal</span>
+<strong>₹<span id="checkoutSubtotal">0</span></strong>
+</div>
+
+<div class="checkout-row">
+<span>Tax 5%</span>
+<span>₹<span id="tax">0</span></span>
+</div>
+
+<div class="checkout-row">
+<span>Discount</span>
+<span>- ₹<span id="discount">0</span></span>
+</div>
+
+<hr>
+
+<div class="checkout-row"
+style="font-size:20px;margin-top:15px">
+
+<strong>Total</strong>
+
+<strong>
+₹<span id="grandTotal">0</span>
+</strong>
+
+</div>
+
+
+<div class="coupon">
+
+<input
+id="coupon"
+placeholder="Coupon code"
+>
+
+<button onclick="applyCoupon()">
+Apply
+</button>
+
+</div>
+
+<small>
+Try coupon: <strong>CAFE10</strong>
+</small>
+
+<br><br>
+
+<input
+class="pay-input"
+id="customerName"
+placeholder="Full Name"
+>
+
+<input
+class="pay-input"
+id="customerPhone"
+placeholder="Phone Number"
+>
+
+<input
+class="pay-input"
+id="customerAddress"
+placeholder="Delivery Address"
+>
+
+<select class="pay-input">
+
+<option>Cash on Delivery</option>
+<option>UPI</option>
+<option>Credit / Debit Card</option>
+
+</select>
+
+<button
+class="pay"
+onclick="placeOrder()">
+
+Place Order
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- CHAT -->
+
+<button
+class="chat-button"
+onclick="toggleChat()">
+💬
+</button>
+
+<div class="chat-box" id="chatBox">
+
+<div class="chat-head">
+
+<strong>Velvet Bean Assistant ☕</strong>
+
+<br>
+
+<small>Usually replies instantly</small>
+
+</div>
+
+<div
+class="chat-messages"
+id="chatMessages">
+
+<div class="message">
+
+Hello! 👋 How can I help you today?
+
+</div>
+
+<div class="message">
+
+Try asking:
+"What is popular?"
+
+</div>
+
+</div>
+
+<div class="chat-input">
+
+<input
+id="chatInput"
+placeholder="Ask something..."
+onkeydown="chatKey(event)"
+>
+
+<button onclick="sendChat()">
+➤
+</button>
+
+</div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+class="toast-container"
+id="toastContainer">
+</div>
+
+
+<!-- BACK TOP -->
+
+<button
+class="back-top"
+id="backTop"
+onclick="window.scrollTo({top:0,behavior:'smooth'})">
+↑
+</button>
+
+
+<script>
+
+/* ============================================
+   APP STATE
+============================================ */
+
+let cart =
+JSON.parse(localStorage.getItem("velvetCart")) || [];
+
+let discount = 0;
+
+let currentCategory = "all";
+
+let recentlyViewed =
+JSON.parse(
+localStorage.getItem("recentlyViewed")
+) || [];
+
+
+/* ============================================
+   LOADER
+============================================ */
+
+window.addEventListener("load",()=>{
+
+    setTimeout(()=>{
+
+        document
+        .getElementById("loader")
+        .classList
+        .add("hide");
+
+    },1600);
+
+    updateCart();
+
+    updateOpeningStatus();
+
+    setupDate();
+
+    reveal();
+
+});
+
+
+/* ============================================
+   TOAST SYSTEM
+============================================ */
+
+function toast(message){
+
+    const container =
+        document.getElementById(
+            "toastContainer"
+        );
+
+    const item =
+        document.createElement("div");
+
+    item.className="toast";
+
+    item.innerHTML=message;
+
+    container.appendChild(item);
+
+    setTimeout(()=>{
+
+        item.remove();
+
+    },3200);
+
+}
+
+
+/* ============================================
+   MOBILE NAVIGATION
+============================================ */
+
+function toggleMenu(){
+
+    document
+    .getElementById("navLinks")
+    .classList
+    .toggle("open");
+
+}
+
+document
+.querySelectorAll(".nav-links a")
+.forEach(link=>{
+
+    link.addEventListener("click",()=>{
+
+        document
+        .getElementById("navLinks")
+        .classList
+        .remove("open");
+
+    });
+
+});
+
+
+/* ============================================
+   DARK MODE
+============================================ */
+
+function toggleTheme(){
+
+    document.body
+    .classList
+    .toggle("dark");
+
+    const enabled =
+        document.body.classList
+        .contains("dark");
+
+    localStorage.setItem(
+        "velvetDark",
+        enabled
+    );
+
+    toast(
+        enabled
+        ? "🌙 Dark mode activated"
+        : "☀️ Light mode activated"
+    );
+
+}
+
+if(
+    localStorage.getItem("velvetDark")
+    ==="true"
+){
+
+    document.body
+    .classList
+    .add("dark");
+
+}
+
+
+/* ============================================
+   PRODUCT SEARCH
+============================================ */
+
+function searchProducts(){
+
+    const value =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase();
+
+    document
+    .querySelectorAll(".product")
+    .forEach(card=>{
+
+        const name =
+            card.dataset.name
+            .toLowerCase();
+
+        const category =
+            card.dataset.category;
+
+        const categoryMatch =
+            currentCategory==="all" ||
+            category===currentCategory;
+
+        const searchMatch =
+            name.includes(value);
+
+        card.style.display =
+            categoryMatch &&
+            searchMatch
+            ? ""
+            : "none";
+
+    });
+
+}
+
+
+/* ============================================
+   PRODUCT FILTER
+============================================ */
+
+function filterProducts(category,button){
+
+    currentCategory=category;
+
+    document
+    .querySelectorAll(".filter")
+    .forEach(btn=>{
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    searchProducts();
+
+}
+
+
+/* ============================================
+   FAVORITES
+============================================ */
+
+function favorite(button){
+
+    button.classList
+    .toggle("active");
+
+    if(
+        button.classList
+        .contains("active")
+    ){
+
+        button.textContent="♥";
+
+        toast("❤️ Added to favorites");
+
+    }else{
+
+        button.textContent="♡";
+
+        toast("Removed from favorites");
+
+    }
+
+}
+
+
+/* ============================================
+   ADD TO CART
+============================================ */
+
+function addToCart(name,price,icon){
+
+    const existing =
+        cart.find(
+            item=>item.name===name
+        );
+
+    if(existing){
+
+        existing.quantity++;
+
+    }else{
+
+        cart.push({
+            name,
+            price,
+            icon,
+            quantity:1
+        });
+
+    }
+
+    saveCart();
+
+    updateCart();
+
+    toast(
+        `☕ <strong>${name}</strong> added to cart`
+    );
+
+}
+
+
+/* ============================================
+   SAVE CART
+============================================ */
+
+function saveCart(){
+
+    localStorage.setItem(
+        "velvetCart",
+        JSON.stringify(cart)
+    );
+
+}
+
+
+/* ============================================
+   UPDATE CART
+============================================ */
+
+function updateCart(){
+
+    const body =
+        document.getElementById(
+            "cartBody"
+        );
+
+    let count=0;
+
+    let total=0;
+
+    cart.forEach(item=>{
+
+        count+=item.quantity;
+
+        total+=
+            item.price*
+            item.quantity;
+
+    });
+
+    document
+    .getElementById("cartCount")
+    .textContent=count;
+
+    document
+    .getElementById("cartTotal")
+    .textContent=total;
+
+
+    if(cart.length===0){
+
+        body.innerHTML=`
+
+        <div class="empty">
+
+            <div style="font-size:60px">
+            🛒
+            </div>
+
+            <p>Your cart is empty.</p>
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    body.innerHTML="";
+
+
+    cart.forEach((item,index)=>{
+
+        const row =
+            document.createElement("div");
+
+        row.className="cart-item";
+
+        row.innerHTML=`
+
+        <div class="cart-icon">
+            ${item.icon}
+        </div>
+
+        <div class="cart-info">
+
+            <h4>${item.name}</h4>
+
+            <div class="cart-price">
+                ₹${item.price}
+            </div>
+
+            <div class="quantity">
+
+                <button
+                onclick="changeQuantity(${index},-1)">
+                −
+                </button>
+
+                <strong>
+                ${item.quantity}
+                </strong>
+
+                <button
+                onclick="changeQuantity(${index},1)">
+                +
+                </button>
+
+                <button
+                onclick="removeCartItem(${index})"
+                style="margin-left:8px">
+                🗑
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+        body.appendChild(row);
+
+    });
+
+}
+
+
+/* ============================================
+   QUANTITY
+============================================ */
+
+function changeQuantity(index,amount){
+
+    cart[index].quantity+=amount;
+
+    if(cart[index].quantity<=0){
+
+        cart.splice(index,1);
+
+    }
+
+    saveCart();
+
+    updateCart();
+
+}
+
+
+/* ============================================
+   REMOVE
+============================================ */
+
+function removeCartItem(index){
+
+    const name=cart[index].name;
+
+    cart.splice(index,1);
+
+    saveCart();
+
+    updateCart();
+
+    toast(
+        `${name} removed`
+    );
+
+}
+
+
+/* ============================================
+   OPEN CART
+============================================ */
+
+function openCart(){
+
+    document
+    .getElementById("cart")
+    .classList
+    .add("open");
+
+}
+
+
+/* ============================================
+   CLOSE CART
+============================================ */
+
+function closeCart(){
+
+    document
+    .getElementById("cart")
+    .classList
+    .remove("open");
+
+}
+
+
+/* ============================================
+   QUICK VIEW
+============================================ */
+
+function quickView(
+    name,
+    description,
+    price,
+    icon
+){
+
+    recentlyViewed =
+        recentlyViewed
+        .filter(item=>item!==name);
+
+    recentlyViewed.unshift(name);
+
+    recentlyViewed =
+        recentlyViewed.slice(0,5);
+
+    localStorage.setItem(
+        "recentlyViewed",
+        JSON.stringify(recentlyViewed)
+    );
+
+
+    document
+    .getElementById("quickContent")
+    .innerHTML=`
+
+    <div style="text-align:center">
+
+        <div style="
+        font-size:110px">
+        ${icon}
+        </div>
+
+        <h2>${name}</h2>
+
+        <p style="
+        color:#88766b;
+        margin:15px 0">
+        ${description}
+        </p>
+
+        <h3 style="
+        color:#9b542b;
+        font-size:25px">
+        ₹${price}
+        </h3>
+
+        <br>
+
+        <button
+        class="add"
+        style="width:100%"
+        onclick="
+        addToCart(
+        '${name}',
+        ${price},
+        '${icon}'
+        );
+        closeModal('quickModal');
+        ">
+
+        Add To Cart
+
+        </button>
+
+    </div>
+
+    `;
+
+
+    document
+    .getElementById("quickModal")
+    .classList
+    .add("show");
+
+}
+
+
+/* ============================================
+   MODAL
+============================================ */
+
+function closeModal(id){
+
+    document
+    .getElementById(id)
+    .classList
+    .remove("show");
+
+}
+
+document
+.querySelectorAll(".modal")
+.forEach(modal=>{
+
+    modal.addEventListener(
+        "click",
+        e=>{
+
+            if(e.target===modal){
+
+                modal.classList
+                .remove("show");
+
+            }
+
+        }
+    );
+
+});
+
+
+/* ============================================
+   CHECKOUT
+============================================ */
+
+function checkout(){
+
+    if(cart.length===0){
+
+        toast("🛒 Your cart is empty");
+
+        return;
+
+    }
+
+    updateCheckout();
+
+    document
+    .getElementById("checkoutModal")
+    .classList
+    .add("show");
+
+}
+
+
+/* ============================================
+   CHECKOUT CALCULATION
+============================================ */
+
+function updateCheckout(){
+
+    const list =
+        document.getElementById(
+            "checkoutItems"
+        );
+
+    let subtotal=0;
+
+    list.innerHTML="";
+
+
+    cart.forEach(item=>{
+
+        const value =
+            item.price*
+            item.quantity;
+
+        subtotal+=value;
+
+        list.innerHTML+=`
+
+        <div class="checkout-row">
+
+            <span>
+            ${item.icon}
+            ${item.name}
+            ×${item.quantity}
+            </span>
+
+            <strong>
+            ₹${value}
+            </strong>
+
+        </div>
+
+        `;
+
+    });
+
+
+    const tax =
+        Math.round(subtotal*.05);
+
+    const discountAmount =
+        Math.round(
+            subtotal*discount
+        );
+
+    const total =
+        subtotal+
+        tax-
+        discountAmount;
+
+
+    document
+    .getElementById("checkoutSubtotal")
+    .textContent=subtotal;
+
+    document
+    .getElementById("tax")
+    .textContent=tax;
+
+    document
+    .getElementById("discount")
+    .textContent=
+        discountAmount;
+
+    document
+    .getElementById("grandTotal")
+    .textContent=
+        Math.max(total,0);
+
+}
+
+
+/* ============================================
+   COUPON
+============================================ */
+
+function applyCoupon(){
+
+    const code =
+        document
+        .getElementById("coupon")
+        .value
+        .trim()
+        .toUpperCase();
+
+
+    if(code==="CAFE10"){
+
+        discount=.10;
+
+        toast(
+            "🎉 10% discount applied!"
+        );
+
+    }else{
+
+        discount=0;
+
+        toast(
+            "❌ Invalid coupon code"
+        );
+
+    }
+
+    updateCheckout();
+
+}
+
+
+/* ============================================
+   PLACE ORDER
+============================================ */
+
+function placeOrder(){
+
+    const name =
+        document
+        .getElementById("customerName")
+        .value
+        .trim();
+
+    const phone =
+        document
+        .getElementById("customerPhone")
+        .value
+        .trim();
+
+    const address =
+        document
+        .getElementById("customerAddress")
+        .value
+        .trim();
+
+
+    if(!name||!phone||!address){
+
+        toast(
+            "⚠️ Please complete all details"
+        );
+
+        return;
+
+    }
+
+
+    const orderID =
+        "VB"+
+        Math.floor(
+            100000+
+            Math.random()*900000
+        );
+
+
+    localStorage.setItem(
+        "lastOrder",
+        JSON.stringify({
+            id:orderID,
+            name,
+            time:new Date().toISOString()
+        })
+    );
+
+
+    cart=[];
+
+    discount=0;
+
+    saveCart();
+
+    updateCart();
+
+    closeCart();
+
+    closeModal("checkoutModal");
+
+
+    toast(
+        `🎉 Order <strong>#${orderID}</strong> confirmed!`
+    );
+
+
+    simulateOrder(orderID);
+
+}
+
+
+/* ============================================
+   ORDER TRACKING SIMULATION
+============================================ */
+
+function simulateOrder(id){
+
+    setTimeout(()=>{
+
+        toast(
+            `👨‍🍳 Order #${id} is being prepared`
+        );
+
+    },5000);
+
+
+    setTimeout(()=>{
+
+        toast(
+            `📦 Order #${id} is ready`
+        );
+
+    },10000);
+
+
+    setTimeout(()=>{
+
+        toast(
+            `🚴 Order #${id} is on the way`
+        );
+
+    },15000);
+
+}
+
+
+/* ============================================
+   RESERVATION
+============================================ */
+
+document
+.getElementById("bookingForm")
+.addEventListener(
+"submit",
+function(e){
+
+    e.preventDefault();
+
+
+    const name =
+        document
+        .getElementById("guestName")
+        .value;
+
+    const date =
+        document
+        .getElementById("bookingDate")
+        .value;
+
+    const bookingID =
+        "RES"+
+        Math.floor(
+            10000+
+            Math.random()*90000
+        );
+
+
+    localStorage.setItem(
+        "reservation",
+        JSON.stringify({
+            name,
+            date,
+            bookingID
+        })
+    );
+
+
+    toast(
+        `🪑 Reservation <strong>${bookingID}</strong> confirmed!`
+    );
+
+
+    this.reset();
+
+});
+
+
+/* ============================================
+   DATE SETUP
+============================================ */
+
+function setupDate(){
+
+    const input =
+        document
+        .getElementById(
+            "bookingDate"
+        );
+
+    const today =
+        new Date()
+        .toISOString()
+        .split("T")[0];
+
+    input.min=today;
+
+}
+
+
+/* ============================================
+   OPENING STATUS
+============================================ */
+
+function updateOpeningStatus(){
+
+    const hour =
+        new Date().getHours();
+
+    const element =
+        document
+        .getElementById(
+            "openStatus"
+        );
+
+
+    if(hour>=10 && hour<23){
+
+        element.textContent=
+            "🟢 Open Now";
+
+        element.style.color=
+            "#8bc477";
+
+    }else{
+
+        element.textContent=
+            "🔴 Closed • Opens 10 AM";
+
+        element.style.color=
+            "#ff9072";
+
+    }
+
+}
+
+
+/* ============================================
+   OFFER COUNTDOWN
+============================================ */
+
+function updateCountdown(){
+
+    const now=new Date();
+
+    const end=new Date();
+
+    end.setHours(
+        23,59,59,999
+    );
+
+    let diff=end-now;
+
+    if(diff<0)diff=0;
+
+
+    const hours=
+        Math.floor(
+            diff/(1000*60*60)
+        );
+
+    const minutes=
+        Math.floor(
+            diff/(1000*60)%60
+        );
+
+    const seconds=
+        Math.floor(
+            diff/1000%60
+        );
+
+
+    document
+    .getElementById("hours")
+    .textContent=
+        String(hours)
+        .padStart(2,"0");
+
+    document
+    .getElementById("minutes")
+    .textContent=
+        String(minutes)
+        .padStart(2,"0");
+
+    document
+    .getElementById("seconds")
+    .textContent=
+        String(seconds)
+        .padStart(2,"0");
+
+}
+
+setInterval(
+    updateCountdown,
+    1000
+);
+
+updateCountdown();
+
+
+/* ============================================
+   CHAT SYSTEM
+============================================ */
+
+function toggleChat(){
+
+    document
+    .getElementById("chatBox")
+    .classList
+    .toggle("open");
+
+}
+
+
+function chatKey(e){
+
+    if(e.key==="Enter"){
+
+        sendChat();
+
+    }
+
+}
+
+
+function sendChat(){
+
+    const input =
+        document
+        .getElementById(
+            "chatInput"
+        );
+
+    const message =
+        input.value.trim();
+
+    if(!message)return;
+
+
+    const messages =
+        document
+        .getElementById(
+            "chatMessages"
+        );
+
+
+    messages.innerHTML+=`
+
+    <div class="message user">
+    ${message}
+    </div>
+
+    `;
+
+
+    input.value="";
+
+
+    let reply=
+        "I'd be happy to help! ☕";
+
+
+    const lower=
+        message.toLowerCase();
+
+
+    if(
+        lower.includes("popular")||
+        lower.includes("best")
+    ){
+
+        reply=
+        "Our Cappuccino and Chocolate Brownie are customer favorites! ⭐";
+
+    }else if(
+        lower.includes("coffee")
+    ){
+
+        reply=
+        "We have Cappuccino, Caramel Latte and Iced Mocha.";
+
+    }else if(
+        lower.includes("open")||
+        lower.includes("time")
+    ){
+
+        reply=
+        "We're open from 10:00 AM to 11:00 PM.";
+
+    }else if(
+        lower.includes("price")
+    ){
+
+        reply=
+        "Our coffee starts from ₹149.";
+
+    }else if(
+        lower.includes("reservation")||
+        lower.includes("table")
+    ){
+
+        reply=
+        "You can reserve a table using our Reservation section.";
+
+    }else if(
+        lower.includes("menu")
+    ){
+
+        reply=
+        "Scroll to our menu to explore all our drinks and food.";
+
+    }
+
+
+    setTimeout(()=>{
+
+        messages.innerHTML+=`
+
+        <div class="message">
+        ${reply}
+        </div>
+
+        `;
+
+        messages.scrollTop=
+            messages.scrollHeight;
+
+    },600);
+
+}
+
+
+/* ============================================
+   SCROLL REVEAL
+============================================ */
+
+function reveal(){
+
+    const elements =
+        document
+        .querySelectorAll(
+            ".reveal"
+        );
+
+
+    const observer =
+        new IntersectionObserver(
+        entries=>{
+
+            entries.forEach(entry=>{
+
+                if(
+                    entry.isIntersecting
+                ){
+
+                    entry.target
+                    .classList
+                    .add("visible");
+
+                }
+
+            });
+
+        },
+        {
+            threshold:.12
+        });
+
+
+    elements.forEach(element=>{
+
+        observer.observe(element);
+
+    });
+
+}
+
+
+/* ============================================
+   BACK TO TOP
+============================================ */
+
+window.addEventListener(
+"scroll",
+()=>{
+
+    const button =
+        document
+        .getElementById(
+            "backTop"
+        );
+
+
+    if(
+        window.scrollY>500
+    ){
+
+        button
+        .classList
+        .add("show");
+
+    }else{
+
+        button
+        .classList
+        .remove("show");
+
+    }
+
+});
+
+
+/* ============================================
+   KEYBOARD SHORTCUTS
+============================================ */
+
+document.addEventListener(
+"keydown",
+e=>{
+
+    const typing=
+        ["INPUT","TEXTAREA"]
+        .includes(
+            document
+            .activeElement
+            .tagName
+        );
+
+
+    if(
+        e.key.toLowerCase()==="c"
+        && !typing
+    ){
+
+        openCart();
+
+    }
+
+
+    if(e.key==="Escape"){
+
+        closeCart();
+
+        document
+        .querySelectorAll(".modal")
+        .forEach(modal=>{
+
+            modal
+            .classList
+            .remove("show");
+
+        });
+
+    }
+
+});
+
+
+/* ============================================
+   ACTIVE NAVIGATION
+============================================ */
+
+const sections =
+    document
+    .querySelectorAll("section");
+
+const links =
+    document
+    .querySelectorAll(
+        ".nav-links a"
+    );
+
+
+window.addEventListener(
+"scroll",
+()=>{
+
+    let current="";
+
+
+    sections.forEach(section=>{
+
+        if(
+            window.scrollY >=
+            section.offsetTop-160
+        ){
+
+            current=section.id;
+
+        }
+
+    });
+
+
+    links.forEach(link=>{
+
+        link.style.color="";
+
+        if(
+            link.getAttribute("href")
+            ==="#"+current
+        ){
+
+            link.style.color=
+                "#9b542b";
+
+        }
+
+    });
+
+});
+
+
+/* ============================================
+   RANDOM DAILY OFFER
+============================================ */
+
+const offers=[
+
+    "☕ Free cookie with every large coffee today!",
+
+    "🥐 Buy 2 pastries and get ₹50 off!",
+
+    "🍰 Dessert combo available today!",
+
+    "☕ Free size upgrade between 2 PM and 4 PM!"
+
+];
+
+
+setTimeout(()=>{
+
+    const random =
+        offers[
+            Math.floor(
+                Math.random()*
+                offers.length
+            )
+        ];
+
+    toast(random);
+
+},4000);
+
+
+/* ============================================
+   AUTO SAVE LAST VISIT
+============================================ */
+
+localStorage.setItem(
+    "lastVisit",
+    new Date().toISOString()
+);
+
+
+/* ============================================
+   PREVENT ACCIDENTAL FORM LOSS
+============================================ */
+
+window.addEventListener(
+"beforeunload",
+()=>{
+
+    saveCart();
+
+});
+
+
+</script>
+
+</body>
+</html>
+</html>
